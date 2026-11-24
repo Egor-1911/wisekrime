@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'IstokWeb-Regular', sans-serif;
+    background-color: #E8E8E8;
+}
+
+.personal-account {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.personal-account__title {
+    font-size: 32px;
+}
+
+.personal-account__card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background: #333;
+    padding: 24px;
+    border-radius: 15px;
+    height: 700px;
+    width: 30%;
+    text-align: center;
+    gap: 30px;
+}
+
+.personal-account__avatar {
+    width: 50%;
+    height: 250px;
+    border-radius: 15px;
+    display: block;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    object-fit: cover;
+    border: 1px solid black;
+}
+
+
+
+.personal-account__avatar:hover {
+    border-color: #DE0000;
+    transform: scale(1.03);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.personal-account__field {
+    background: white;
+    width: 80%;
+    height: 60px;
+    border-radius: 15px;
+    font-size: 18px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    padding-left: 15px;
+}
+
+.personal-account__field:hover {
+    border: 1px solid #DE0000;
+    background: #f0f0f0;
+}
+
+.personal-account__action {
+    width: 80%;
+    height: 60px;
+    background: #e60000;
+    color: white;
+    border-radius: 15px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.personal-account__action:hover {
+    background: #b80000;
+    border-color: #b80000;
+}
+
+/* Адаптивность */
+
+@media (max-width: 1200px) {
+    .personal-account {
+        height: auto;
+        min-height: 750px;
+        padding: 40px 0;
+    }
+
+    .personal-account__card {
+        width: 35%;
+        height: 680px;
+        gap: 25px;
+    }
+
+    .personal-account__avatar {
+        height: 220px;
+        width: 55%;
+    }
+
+    .personal-account__field {
+        height: 55px;
+        font-size: 17px;
+        padding-left: 12px;
+    }
+
+    .personal-account__action {
+        height: 55px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 900px) {
+    .personal-account {
+        padding: 30px 0;
+    }
+
+    .personal-account__card {
+        width: 60%;
+        height: auto;
+        min-height: 620px;
+        padding: 24px 20px;
+        gap: 20px;
+    }
+
+    .personal-account__avatar {
+        height: 180px;
+        width: 50%;
+    }
+
+    .personal-account__field {
+        height: 50px;
+        font-size: 16px;
+        padding-left: 10px;
+    }
+
+    .personal-account__action {
+        height: 50px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .personal-account {
+        padding: 24px 16px;
+    }
+
+    .personal-account__card {
+        width: 90%;
+        min-height: 560px;
+        padding: 20px 16px;
+        gap: 18px;
+    }
+
+    .personal-account__avatar {
+        height: 200px;
+        width: 80%;
+    }
+
+    .personal-account__field {
+        height: 48px;
+        font-size: 15px;
+        padding-left: 10px;
+    }
+
+    .personal-account__action {
+        height: 48px;
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'IstokWeb-Regular', sans-serif;
+    background-color: #E8E8E8;
+}
+
+.authentication {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.authentication__form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 30px;
+    justify-content: flex-start;
+    background-color: #363636;
+    width: 30%;
+    height: 700px;
+    gap: 30px;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.authentication__form-title {
+    font-size: 30px;
+    color: white;
+}
+
+.authentication__input {
+    width: 80%;
+    height: 60px;
+    outline: none;
+    font-size: 22px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.authentication__input:focus {
+    border-color: #DE0000;
+    background-color: #454545;
+    color: white;
+}
+
+.authentication__input::placeholder {
+    color: black;
+    font-size: 22px;
+}
+
+.authentication__input:focus::placeholder {
+    color: #aaa;
+}
+.authentication__submit {
+    width: 25%;
+    height: 50px;
+    color: white;
+    background-color: red;
+    border: 1px solid black;
+    border-radius: 15px;
+    font-size: 18px;
+    text-align: center;
+    line-height: 50px;
+}
+
+.authentication__submit:hover {
+    background-color: #b80000;
+    border-color: #b80000;
+}
+
+.authentication__link{
+    color: #DE0000;
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.authentication__link:hover {
+    color: #a00000;
+}
+
+/* Адаптивка */
+
+
+@media (max-width: 1200px) {
+    .authentication__form {
+        width: 35%;
+        height: 680px;
+        gap: 25px;
+    }
+
+    .authentication__input {
+        height: 55px;
+        font-size: 20px;
+        padding: 18px;
+    }
+
+    .authentication__input::placeholder {
+        font-size: 20px;
+    }
+
+    .authentication__submit {
+        width: 30%;
+        height: 48px;
+        font-size: 17px;
+    }
+
+    .authentication__link {
+        font-size: 20px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .authentication__title {
+        font-size: 28px;
+    }
+
+    .authentication__form {
+        width: 60%;
+        height: auto;
+        min-height: 620px;
+        padding: 20px 0;
+        gap: 20px;
+    }
+
+    .authentication__form-title {
+        font-size: 24px;
+    }
+
+    .authentication__input {
+        height: 50px;
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    .authentication__input::placeholder {
+        font-size: 18px;
+    }
+
+    .authentication__submit {
+        width: 35%;
+        height: 45px;
+        font-size: 16px;
+    }
+
+    .authentication__link {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .authentication {
+        padding: 0 16px;
+    }
+
+    .authentication__title {
+        font-size: 24px;
+        padding: 0 10px;
+    }
+
+    .authentication__form {
+        width: 90%;
+        min-height: 580px;
+        padding: 24px 0;
+        gap: 18px;
+    }
+
+    .authentication__form-title {
+        font-size: 22px;
+    }
+
+    .authentication__input {
+        height: 48px;
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    .authentication__input::placeholder {
+        font-size: 16px;
+    }
+
+    .authentication__submit {
+        width: 45%;
+        height: 42px;
+        font-size: 15px;
+    }
+
+    .authentication__link {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'IstokWeb-Regular', sans-serif;
+    background-color: #E8E8E8;
+}
+
+.licenses__title {
+    text-align: center;
+    font-size: 32px;
+}
+
+.licenses__list {
+    width: 60%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    gap: 40px 40px;
+    margin: auto;
+}
+
+.licenses__card {
+    display: flex;
+    flex-direction: column;
+    background-color: #363636;
+    border-radius: 15px;
+    padding: 24px;
+    width: 340px;
+    height: 450px;
+    color: white;
+    gap: 15px;
+}
+
+.licenses__card:hover {
+    background-color: #454545;
+    border-color: #DE0000;
+}
+
+.licenses__card h3 {
+    font-size: 24px;
+}
+
+.licenses__price {
+    color: #DE0000;
+    font-size: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.licenses__old-price {
+    font-size: 16px;
+    color: #888;
+    text-decoration: line-through;
+}
+
+.licenses__format {
+    background-color: #454545;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+}
+
+.licenses__format:hover {
+    background-color: #555555;
+}
+
+.licenses__card ul {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    list-style: none;
+}
+
+.licenses__card button {
+    width: 100%;
+    height: 40px;
+    background-color: #DE0000;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    font-size: 14px;
+    border: 1px solid black;
+}
+
+.licenses__card button:hover {
+    background-color: #b80000;
+    border-color: #b80000;
+}
+
+
+@media (max-width: 1200px) {
+    .licenses__list {
+        width: 80%;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .licenses__title {
+        font-size: 28px;
+    }
+
+    .licenses__list {
+        width: 90%;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, 1fr);
+        gap: 30px;
+    }
+
+    .licenses__card {
+        width: 100%;
+        max-width: 340px;
+        height: auto;
+        padding: 20px;
+    }
+
+    .licenses__card h2 {
+        font-size: 22px;
+    }
+
+    .licenses__price {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    .licenses__title {
+        font-size: 24px;
+        padding: 0 16px;
+    }
+
+    .licenses__list {
+        width: 95%;
+        gap: 24px;
+        grid-template-rows: auto;
+    }
+
+    .licenses__card {
+        padding: 16px;
+    }
+
+    .licenses__card:nth-child(n + 4){
+        display: none;
+    }
+
+    .licenses__card h2 {
+        font-size: 20px;
+    }
+
+    .licenses__price {
+        font-size: 24px;
+        /*flex-direction: column;*/
+        gap: 8px;
+    }
+
+    .licenses__old-price {
+        font-size: 14px;
+    }
+
+    .licenses__format {
+        font-size: 14px;
+        height: 36px;
+    }
+
+    .licenses__card button {
+        height: 36px;
+        font-size: 13px;
+    }
+}

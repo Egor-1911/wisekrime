@@ -1,0 +1,284 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'MyFont';
+    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'IstokWeb-Regular', sans-serif;
+    background-color: #E8E8E8;
+}
+
+.studios {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.studios__container {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    width: 65%;
+    background: #363636;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+.studios__title {
+    font-size: 32px;
+}
+
+.studios__search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 10%;
+    padding-left: 10px;
+    gap: 30px;
+}
+
+.studios__search:hover {
+    border: 1px solid #DE0000;
+    border-radius: 15px 15px 0 0;
+
+}
+
+.studios__search-icon {
+    height: 70%;
+    width: 5%;
+    object-fit: contain;
+}
+
+.studios__search-input {
+    height: 100%;
+    width: 90%;
+    background: none;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    color: white;
+}
+
+.studios__search-input::placeholder {
+    color: white;
+    font-size: 18px;
+    text-align: left;
+}
+
+.studios__content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 90%;
+}
+
+.studios__list {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.studios__item {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    height: 33%;
+    border-top: 1px solid black;
+    padding: 50px;
+}
+
+.studios__item:hover {
+    background-color: #454545;
+}
+
+.studios__item h3 {
+    font-size: 24px;
+    color: #DE0000;
+}
+
+
+.studios__item p {
+    font-size: 18px;
+    color: white;
+}
+
+.studios__item h4 {
+    font-size: 20px;
+    color: white;
+}
+
+.studios__map {
+    width: 60%;
+    height: 100%;
+}
+
+.studios__map img {
+    width: 100%;
+    height: 100%;
+    border-radius: 0 0 15px 0;
+    object-fit: cover;
+}
+
+.studios__map img:hover {
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+/* Адаптивка */
+
+
+@media (max-width: 1200px) {
+    .studios__container {
+        width: 80%;
+        height: 600px;
+    }
+
+    .studios__item {
+        padding: 40px;
+    }
+
+    .studios__item h3 {
+        font-size: 22px;
+    }
+
+    .studios__item h4 {
+        font-size: 18px;
+    }
+
+    .studios__item p {
+        font-size: 16px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .studios__container {
+        width: 90%;
+        height: auto;
+        /*padding-top: 10px;*/
+    }
+
+    .studios__content {
+        flex-direction: column;
+        height: auto;
+        gap: 20px;
+    }
+
+    .studios__list {
+        width: 100%;
+        height: auto;
+    }
+
+    .studios__item {
+        height: auto;
+        padding: 25px;
+        border-top: 1px solid black;
+    }
+
+    .studios__map {
+        width: 100%;
+        height: 300px;
+    }
+
+    .studios__map img {
+        object-fit: cover;
+        border-radius: 0 0 15px 15px;
+    }
+
+    .studios__search {
+        height: 50px;
+        gap: 15px;
+    }
+
+    .studios__search-icon {
+        width: 5%;
+    }
+
+    .studios__search-input {
+        font-size: 16px;
+    }
+
+    .studios__search-input::placeholder {
+        font-size: 16px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .studios {
+        padding: 0 16px;
+    }
+
+    .studios__container {
+        width: 100%;
+        border-radius: 12px;
+        /*padding: 16px 0;*/
+    }
+
+    .studios__title {
+        font-size: 26px;
+        padding: 0 10px;
+    }
+
+    .studios__search {
+        height: 45px;
+        padding: 0 12px;
+    }
+
+    .studios__search-icon {
+        width: 10%;
+    }
+
+    .studios__search-icon img {
+        width: 100%;
+    }
+
+    .studios__search-input {
+        font-size: 14px;
+    }
+
+    .studios__search-input::placeholder {
+        font-size: 14px;
+    }
+
+    .studios__item {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .studios__item h3 {
+        font-size: 20px;
+    }
+
+    .studios__item h4 {
+        font-size: 16px;
+    }
+
+    .studios__item p {
+        font-size: 14px;
+    }
+
+    .studios__map {
+        height: 250px;
+    }
+}

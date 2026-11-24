@@ -1,0 +1,279 @@
+.footer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 280px;
+    background-color: #363636;
+}
+
+.footer__left {
+    width: 25%;
+    height: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.footer__app {
+    height: 80px;
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    border: 4px solid black;
+    border-radius: 15px;
+    align-items: center;
+}
+
+.footer__app:hover {
+    border-color: #DE0000;
+}
+
+.footer__app-icon {
+    display: flex;
+    width: 30%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer__app-icon img {
+    width: 50%;
+    height: 40px;
+    object-fit: contain;
+}
+
+.footer__app-info {
+    display: flex;
+    width: 70%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+}
+
+.footer__app-info h4 {
+    font-size: 16px;
+}
+
+.footer__app-info h3 {
+    font-size: 24px;
+}
+
+.footer__center {
+    height: 80%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20%;
+}
+
+.footer__center a {
+    color: white;
+    font-size: 24px;
+}
+
+.footer__center a:hover {
+    color: #DE0000;
+}
+
+.footer__right {
+    height: 80%;
+    width: 15%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.footer__right h3 {
+    display: flex;
+    font-size: 24px;
+    color: white;
+}
+
+.footer__social-item {
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    gap: 5%;
+}
+
+.footer__social-item a {
+    font-size: 20px;
+    color: white;
+}
+
+.footer__social-item a:hover {
+    color: #DE0000;
+}
+
+.footer__social-item img {
+    height: 30px;
+    width: 30px;
+}
+
+/* Адаптивность */
+
+/* Планшеты и маленькие десктопы */
+@media (max-width: 1200px) {
+    .footer {
+        height: 240px;
+    }
+
+    .footer__left {
+        width: 30%;
+        gap: 30px;
+    }
+
+    .footer__center {
+        width: 55%;
+        gap: 40px;
+    }
+
+    .footer__app {
+        height: 65px;
+    }
+
+    .footer__app-info h3 {
+        font-size: 20px;
+    }
+
+    .footer__center a {
+        font-size: 22px;
+    }
+
+    .footer__right h3 {
+        font-size: 22px;
+    }
+}
+
+
+@media (max-width: 900px) {
+    .footer {
+        height: auto;
+        padding: 24px 20px;
+        gap: 20px;
+    }
+
+    .footer__left,
+    .footer__center,
+    .footer__right {
+        height: auto;
+    }
+
+    .footer__left {
+        width: 30%;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .footer__app {
+        width: 80%;
+        height: 50px;
+    }
+
+    .footer__app-info {
+        display: none;
+    }
+
+    .footer__app-icon {
+        width: 100%;
+    }
+
+    .footer__app-icon img {
+        height: 32px;
+        width: auto;
+    }
+
+    .footer__center {
+        flex-direction: column;
+        align-items: center;
+        width: 60%;
+        gap: 15px;
+    }
+
+    .footer__center a {
+        font-size: 18px;
+    }
+
+    .footer__right {
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 12px;
+        width: 10%;
+    }
+
+    .footer__right h3 {
+        display: none;
+    }
+
+    .footer__social-item {
+        width: auto;
+        justify-content: flex-start;
+        gap: 8px;
+    }
+
+    .footer__social-item img {
+        height: 24px;
+        width: 24px;
+    }
+
+    .footer__social-item a {
+        display: none;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 20px 16px;
+        gap: 16px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .footer__left,
+    .footer__center,
+    .footer__right {
+        width: 100%;
+        align-items: center;
+    }
+
+    .footer__center {
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__center a {
+        font-size: 16px;
+    }
+
+    .footer__right {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer__social-item {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .footer__app {
+        width: 60%;
+        height: 45px;
+    }
+
+    .footer__app-icon img {
+        height: 28px;
+    }
+}
