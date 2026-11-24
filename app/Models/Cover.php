@@ -16,6 +16,7 @@ class Cover extends Model
         'designer_id',
     ];
 
+
     public function designer(): BelongsTo
     {
         return $this->belongsTo(Designer::class);

@@ -25,3 +25,4 @@ class License extends Model
         return $this->hasMany(Order::class);
     }
 }
+

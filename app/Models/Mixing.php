@@ -10,6 +10,7 @@ class Mixing extends Model
 {
     protected $table = 'mixing';
 
+
     protected $fillable = [
         'engineer_id',
         'name',

@@ -20,6 +20,7 @@ class Order extends Model
         'total_price' => 'decimal:2',
     ];
 
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

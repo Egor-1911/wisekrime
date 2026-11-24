@@ -22,6 +22,7 @@ class Beat extends Model
         'availability',
     ];
 
+
     protected $casts = [
         'availability' => 'boolean',
         'bpm' => 'integer',
