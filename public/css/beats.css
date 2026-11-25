@@ -9,8 +9,8 @@ a {
 }
 
 @font-face {
-    font-family: 'MyFont';
-    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-family: 'IstokWeb-Regular';
+    src: url('/fonts/IstokWeb-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -34,6 +34,7 @@ body {
     font-size: 32px;
 }
 
+/* === ПОИСК (адаптирован под <form>) === */
 .beats__search {
     display: flex;
     width: 40%;
@@ -43,6 +44,7 @@ body {
     align-items: center;
     border-radius: 15px;
     border: 1px solid black;
+    padding: 0 10px;
 }
 
 .beats__search:hover {
@@ -62,6 +64,7 @@ body {
     color: white;
     background-color: #363636;
     padding-left: 20px;
+    font-family: 'IstokWeb-Regular', sans-serif;
 }
 
 .beats__search-input::placeholder {
@@ -73,12 +76,88 @@ body {
 
 .beats__search-icon {
     object-fit: contain;
-    /*object-position: center;*/
     height: 40px;
     width: 5%;
 }
 
+/* Кнопка "Найти" в стиле ваших красных кнопок */
+.beats__search-btn {
+    height: 45px;
+    width: 90px;
+    border-radius: 15px;
+    background-color: #DE0000;
+    font-size: 16px;
+    color: white;
+    border: 1px solid black;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
 
+.beats__search-btn:hover {
+    background-color: #b80000;
+    border-color: #b80000;
+}
+
+/* Ссылка "Сбросить фильтры" */
+.beats__search-reset {
+    color: #888;
+    font-size: 14px;
+    margin-left: 15px;
+    transition: color 0.2s ease;
+}
+
+.beats__search-reset:hover {
+    color: #DE0000;
+    text-decoration: underline;
+}
+
+/* === БЛОК СОРТИРОВКИ === */
+.beats__sort-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    width: 82%;
+}
+
+.beats__sort-label {
+    font-size: 18px;
+    color: #363636;
+    font-weight: bold;
+}
+
+.beats__sort-link {
+    display: inline-block;
+    height: 40px;
+    padding: 0 20px;
+    line-height: 40px;
+    border-radius: 15px;
+    background-color: #363636;
+    color: white;
+    border: 1px solid black;
+    font-size: 16px;
+    transition: all 0.2s ease;
+}
+
+.beats__sort-link:hover {
+    border-color: #DE0000;
+    background-color: #454545;
+}
+
+.beats__sort-link.active {
+    background-color: #DE0000;
+    border-color: #DE0000;
+    color: white;
+}
+
+.beats__sort-link.active:hover {
+    background-color: #b80000;
+    border-color: #b80000;
+}
+
+/* === СПИСОК БИТОВ === */
 .beats__list {
     display: flex;
     align-items: center;
@@ -133,7 +212,6 @@ body {
 
 .beats__item-title {
     width: 35%;
-
 }
 
 .beats__item-time {
@@ -156,11 +234,25 @@ body {
     font-size: 16px;
     color: white;
     border: 1px solid black;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    cursor: pointer;
 }
 
 .beats__item-button:hover {
     background-color: #b80000;
     border-color: #b80000;
+}
+
+.beats__empty {
+    text-align: center;
+    padding: 40px;
+    color: #363636;
+    font-size: 20px;
+}
+
+.beats__empty a {
+    color: #DE0000;
+    text-decoration: underline;
 }
 
 .beats__load-more {
@@ -177,6 +269,9 @@ body {
     border-radius: 15px;
     background-color: #DE0000;
     font-size: 18px;
+    border: 1px solid black;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    cursor: pointer;
 }
 
 .beats__load-more button:hover {
@@ -184,8 +279,7 @@ body {
     border-color: #b80000;
 }
 
-/* Адаптивка */
-
+/* === АДАПТИВКА === */
 
 @media (max-width: 1200px) {
     .beats {
@@ -212,6 +306,23 @@ body {
     .beats__search-icon {
         height: 36px;
         width: 8%;
+    }
+
+    .beats__search-btn {
+        height: 42px;
+        width: 85px;
+        font-size: 15px;
+    }
+
+    .beats__sort-controls {
+        gap: 10px;
+    }
+
+    .beats__sort-link {
+        height: 36px;
+        line-height: 36px;
+        padding: 0 15px;
+        font-size: 14px;
     }
 
     .beats__item {
@@ -261,7 +372,6 @@ body {
     }
 }
 
-
 @media (max-width: 900px) {
     .beats__search {
         width: 70%;
@@ -282,6 +392,23 @@ body {
     .beats__search-icon {
         height: 32px;
         width: 10%;
+    }
+
+    .beats__search-btn {
+        height: 38px;
+        width: 75px;
+        font-size: 14px;
+    }
+
+    .beats__sort-controls {
+        width: 90%;
+    }
+
+    .beats__sort-link {
+        height: 32px;
+        line-height: 32px;
+        padding: 0 12px;
+        font-size: 13px;
     }
 
     .beats__item {
@@ -322,7 +449,6 @@ body {
     }
 }
 
-
 @media (max-width: 480px) {
     .beats {
         gap: 30px;
@@ -353,6 +479,30 @@ body {
     .beats__search-icon {
         height: 28px;
         width: 12%;
+    }
+
+    .beats__search-btn {
+        height: 34px;
+        width: 65px;
+        font-size: 13px;
+    }
+
+    .beats__sort-controls {
+        width: 95%;
+        gap: 8px;
+    }
+
+    .beats__sort-label {
+        width: 100%;
+        text-align: center;
+        font-size: 16px;
+    }
+
+    .beats__sort-link {
+        height: 30px;
+        line-height: 30px;
+        padding: 0 10px;
+        font-size: 12px;
     }
 
     .beats__item {
