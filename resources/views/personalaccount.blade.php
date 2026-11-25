@@ -12,9 +12,11 @@
 
     @auth
         <div class="personal-account__card">
-            <img src="{{ auth()->user()->avatar ? asset('img/' . auth()->user()->avatar) : asset('img/macan.png') }}" 
-                 alt="Фото профиля" 
-                 class="personal-account__avatar">
+            <div class="personal-account__avatar-upload">
+                <img src="{{ auth()->user()->avatar ? asset('storage/avatars/' . auth()->user()->avatar) : asset('img/macan.png') }}" 
+                    alt="Фото профиля" 
+                    class="personal-account__avatar">
+            </div>
             
             <div class="personal-account__field">
                 &#128100; {{ auth()->user()->name }} {{ auth()->user()->surname }}
@@ -23,6 +25,7 @@
                 &#9993; {{ auth()->user()->email }}
             </div>
 
+            <a href="{{ route('profile.show') }}" class="personal-account__action">Редактировать профиль</a>
             <a href="{{ route('orders.index') }}" class="personal-account__action">Заказы</a>
             <a href="{{ route('cart.index') }}" class="personal-account__action">Корзина</a>
 

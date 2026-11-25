@@ -55,7 +55,7 @@ body {
     height: 250px;
     border-radius: 15px;
     display: block;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     object-fit: cover;
     border: 1px solid black;
 }
@@ -147,15 +147,162 @@ body {
     text-decoration: underline;
 }
 
+.personal-account__form {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Поле ввода в стиле personal-account__field */
+.personal-account__input {
+    width: 100%;
+    height: 60px;
+    outline: none;
+    font-size: 18px;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 0 15px;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    background-color: white;
+    color: black;
+    transition: all 0.2s ease;
+}
+
+.personal-account__input:focus {
+    border-color: #DE0000;
+    background-color: #f0f0f0;
+}
+
+.personal-account__input::placeholder {
+    color: #888;
+    font-size: 18px;
+}
+
+/* Секция аватара с загрузкой */
+.personal-account__avatar-upload {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.personal-account__avatar-file {
+    display: none;
+}
+
+.personal-account__avatar-label {
+    padding: 10px 20px;
+    background-color: #DE0000;
+    color: white;
+    border-radius: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    transition: all 0.2s ease;
+}
+
+.personal-account__avatar-label:hover {
+    background-color: #b80000;
+    border-color: #b80000;
+}
+
+/* Сообщение об ошибке валидации */
+.personal-account__error {
+    color: #DE0000;
+    font-size: 14px;
+    width: 100%;
+    text-align: left;
+    padding-left: 5px;
+    margin-top: -15px;
+}
+
+/* Сообщение об успехе */
+.personal-account__success {
+    color: green;
+    font-size: 18px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Ссылка "Назад" */
+.personal-account__back-link {
+    margin-top: 20px;
+    color: #DE0000;
+    font-size: 18px;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.personal-account__back-link:hover {
+    color: #a00000;
+}
+
+
+
+
 /* Адаптивка */
 @media (max-width: 1200px) {
-    .personal-account__card { width: 35%; min-height: 680px; gap: 25px; }
-    .personal-account__avatar { height: 220px; width: 55%; }
-    .personal-account__field { height: 55px; font-size: 17px; padding-left: 12px; }
-    .personal-account__action, .personal-account__logout { height: 55px; font-size: 17px; }
+    .personal-account__card {
+        width: 35%;
+        min-height: 680px;
+        gap: 25px;
+    }
+
+    .personal-account__avatar {
+        height: 220px;
+        width: 55%;
+    }
+
+    .personal-account__field {
+        height: 55px;
+        font-size: 17px;
+        padding-left: 12px;
+    }
+
+    .personal-account__action,
+    .personal-account__logout {
+        height: 55px;
+        font-size: 17px;
+    }
+
+    .personal-account__input {
+        height: 55px;
+        font-size: 17px;
+    }
+
+    .personal-account__input {
+        height: 50px;
+        font-size: 16px;
+    }
+
+    .personal-account__form {
+        gap: 15px;
+    }
 }
 
 @media (max-width: 900px) {
-    .personal-account__card { width: 60%; min-height: 620px; padding: 24px 20px; gap: 20px; }
-    .personal-account__avatar { height: 180px; width: 50%; }
+    .personal-account__card {
+        width: 60%;
+        min-height: 620px;
+        padding: 24px 20px;
+        gap: 20px;
+    }
+
+    .personal-account__avatar {
+        height: 180px;
+        width: 50%;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .personal-account__input {
+        height: 48px;
+        font-size: 15px;
+    }
 }

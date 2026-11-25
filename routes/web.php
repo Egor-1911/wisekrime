@@ -5,7 +5,7 @@ use App\Http\Controllers\BeatController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ProfileController;
 
 
 // Главная страница
@@ -52,7 +52,11 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
     Route::get('/order/success/{id}', [OrderController::class, 'success'])->name('order.success');
 
-    // ← ДОБАВЛЕНО: История заказов
+    // Заказы
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
     Route::get('/orders/{id}', [OrderController::class, 'show'])->name('orders.show');
+
+    // Редактирование профиля
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
