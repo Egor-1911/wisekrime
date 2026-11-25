@@ -7,36 +7,38 @@
 @endpush
 
 @section('content')
-<main>
-    <div class="personal-account">
-        <h1 class="personal-account__title">Личный кабинет</h1>
-        <br>
+<div class="personal-account">
+    <h1 class="personal-account__title">Личный кабинет</h1>
 
-        @auth
-            <!-- Этот блок увидит только авторизованный пользователь -->
-            <div class="personal-account__card">
-                <!-- Если у пользователя есть аватар в БД, показываем его, иначе картинку-заглушку -->
-                <img src="{{ auth()->user()->avatar ? asset('img/' . auth()->user()->avatar) : asset('img/macan.png') }}" 
-                     alt="Фото профиля" 
-                     class="personal-account__avatar">
-                
-                <div class="personal-account__field">
-                    &#128100; {{ auth()->user()->name }}
-                </div>
-                <div class="personal-account__field">
-                    &#9993; {{ auth()->user()->email }}
-                </div>
+    @auth
+        <div class="personal-account__card">
+            <img src="{{ auth()->user()->avatar ? asset('img/' . auth()->user()->avatar) : asset('img/macan.png') }}" 
+                 alt="Фото профиля" 
+                 class="personal-account__avatar">
+            
+            <div class="personal-account__field">
+                &#128100; {{ auth()->user()->name }} {{ auth()->user()->surname }}
+            </div>
+            <div class="personal-account__field">
+                &#9993; {{ auth()->user()->email }}
+            </div>
 
-                <!-- Ссылки на разделы (используем <a> вместо <button> для навигации, но сохраняем ваш класс) -->
-                <a href="{{ route('orders.index') }}" class="personal-account__action" style="text-decoration: none; display: inline-block; text-align: center; line-height: normal;">Заказы</a>
-                <a href="{{ route('cart.index') }}" class="personal-account__action" style="text-decoration: none; display: inline-block; text-align: center; line-height: normal;">Корзина</a>
-            </div>
-        @else
-            <!-- Этот блок увидит гость (неавторизованный пользователь) -->
-            <div class="personal-account__card">
-                <p>Для просмотра личного кабинета необходимо <a href="{{ route('login') }}">войти</a> или <a href="{{ route('register') }}">зарегистрироваться</a>.</p>
-            </div>
-        @endauth
-    </div>
-</main>
+            <a href="{{ route('orders.index') }}" class="personal-account__action">Заказы</a>
+            <a href="{{ route('cart.index') }}" class="personal-account__action">Корзина</a>
+
+            <form action="{{ route('logout') }}" method="POST" style="width: 80%;">
+                @csrf
+                <button type="submit" class="personal-account__logout">Выйти</button>
+            </form>
+        </div>
+    @else
+        <div class="personal-account__card">
+            <p class="personal-account__message">
+                Для просмотра личного кабинета необходимо 
+                <a href="{{ route('login') }}">войти</a> или 
+                <a href="{{ route('register') }}">зарегистрироваться</a>.
+            </p>
+        </div>
+    @endauth
+</div>
 @endsection

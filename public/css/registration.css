@@ -9,8 +9,8 @@ a {
 }
 
 @font-face {
-    font-family: 'MyFont';
-    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-family: 'IstokWeb-Regular';
+    src: url('/fonts/IstokWeb-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -26,6 +26,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 80vh;
+    padding: 40px 0;
 }
 
 .registration__title {
@@ -40,10 +42,11 @@ body {
     justify-content: flex-start;
     background-color: #363636;
     width: 30%;
-    height: 700px;
+    min-height: 700px;
     gap: 30px;
     border-radius: 15px;
     border: 1px solid black;
+    padding-bottom: 30px;
 }
 
 .registration__form-title {
@@ -59,6 +62,7 @@ body {
     border: 1px solid black;
     border-radius: 15px;
     padding: 20px;
+    font-family: 'IstokWeb-Regular', sans-serif;
 }
 
 .registration__input:focus {
@@ -76,16 +80,20 @@ body {
     color: #aaa;
 }
 
+/* Кнопка входа — теперь <button> */
 .registration__submit {
     width: 25%;
     height: 50px;
     color: white;
     text-align: center;
     line-height: 50px;
-    background-color: red;
+    background-color: #DE0000;
     border: 1px solid black;
     border-radius: 15px;
     font-size: 18px;
+    cursor: pointer;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    transition: all 0.2s ease;
 }
 
 .registration__submit:hover {
@@ -124,6 +132,10 @@ body {
     border: 1px solid black;
     border-radius: 15px;
     gap: 10px;
+    background-color: #363636;
+    color: white;
+    cursor: pointer;
+    font-family: 'IstokWeb-Regular', sans-serif;
 }
 
 .registration__social-btn:hover {
@@ -136,156 +148,55 @@ body {
     height: 30px;
 }
 
-/* Адаптивка */
-
-
-@media (max-width: 1200px) {
-    .registration__form {
-        width: 35%;
-        height: 680px;
-        gap: 25px;
-    }
-
-    .registration__input {
-        height: 55px;
-        font-size: 20px;
-        padding: 18px;
-    }
-
-    .registration__input::placeholder {
-        font-size: 20px;
-    }
-
-    .registration__submit {
-        width: 30%;
-        height: 48px;
-        line-height: 48px;
-        font-size: 17px;
-    }
-
-    .registration__divider-text {
-        font-size: 19px;
-    }
-
-    .registration__social-btn {
-        height: 55px;
-        font-size: 20px;
-    }
+.registration__error {
+    color: #DE0000;
+    font-size: 14px;
+    width: 80%;
+    text-align: left;
+    padding-left: 10%;
+    margin-top: -20px;
 }
 
+.registration__success {
+    color: green;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Адаптивка */
+@media (max-width: 1200px) {
+    .registration__form { width: 35%; min-height: 680px; gap: 25px; }
+    .registration__input { height: 55px; font-size: 20px; padding: 18px; }
+    .registration__input::placeholder { font-size: 20px; }
+    .registration__submit { width: 30%; height: 48px; line-height: 48px; font-size: 17px; }
+    .registration__divider-text { font-size: 19px; }
+    .registration__social-btn { height: 55px; font-size: 20px; }
+}
 
 @media (max-width: 900px) {
-    .registration__title {
-        font-size: 28px;
-    }
-
-    .registration__form {
-        width: 60%;
-        height: auto;
-        min-height: 650px;
-        padding: 20px 0;
-        gap: 20px;
-    }
-
-    .registration__form-title {
-        font-size: 24px;
-    }
-
-    .registration__input {
-        height: 50px;
-        font-size: 18px;
-        padding: 15px;
-    }
-
-    .registration__input::placeholder {
-        font-size: 18px;
-    }
-
-    .registration__submit {
-        width: 35%;
-        height: 45px;
-        line-height: 45px;
-        font-size: 16px;
-    }
-
-    .registration__divider-text {
-        font-size: 18px;
-    }
-
-    .registration__divider-line {
-        width: 35%;
-    }
-
-    .registration__social-btn {
-        height: 50px;
-        font-size: 18px;
-    }
-
-    .registration__social-icon {
-        width: 26px;
-        height: 26px;
-    }
+    .registration__title { font-size: 28px; }
+    .registration__form { width: 60%; min-height: 650px; padding: 20px 0; gap: 20px; }
+    .registration__form-title { font-size: 24px; }
+    .registration__input { height: 50px; font-size: 18px; padding: 15px; }
+    .registration__input::placeholder { font-size: 18px; }
+    .registration__submit { width: 35%; height: 45px; line-height: 45px; font-size: 16px; }
+    .registration__divider-text { font-size: 18px; }
+    .registration__divider-line { width: 35%; }
+    .registration__social-btn { height: 50px; font-size: 18px; }
+    .registration__social-icon { width: 26px; height: 26px; }
 }
 
-
 @media (max-width: 480px) {
-    .registration {
-        padding: 0 16px;
-    }
-
-    .registration__title {
-        font-size: 24px;
-        padding: 0 10px;
-    }
-
-    .registration__form {
-        width: 90%;
-        min-height: 600px;
-        padding: 24px 0;
-        gap: 18px;
-    }
-
-    .registration__form-title {
-        font-size: 22px;
-    }
-
-    .registration__input {
-        height: 48px;
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    .registration__input::placeholder {
-        font-size: 16px;
-    }
-
-    .registration__submit {
-        width: 45%;
-        height: 42px;
-        line-height: 42px;
-        font-size: 15px;
-    }
-
-    .registration__divider {
-        width: 85%;
-    }
-
-    .registration__divider-text {
-        font-size: 16px;
-    }
-
-    .registration__divider-line {
-        width: 30%;
-    }
-
-    .registration__social-btn {
-        height: 46px;
-        font-size: 16px;
-        width: 85%;
-    }
-
-    .registration__social-icon {
-        width: 24px;
-        height: 24px;
-    }
+    .registration { padding: 0 16px; }
+    .registration__title { font-size: 24px; padding: 0 10px; }
+    .registration__form { width: 90%; min-height: 600px; padding: 24px 0; gap: 18px; }
+    .registration__form-title { font-size: 22px; }
+    .registration__input { height: 48px; font-size: 16px; padding: 12px; }
+    .registration__input::placeholder { font-size: 16px; }
+    .registration__submit { width: 45%; height: 42px; line-height: 42px; font-size: 15px; }
+    .registration__divider { width: 85%; }
+    .registration__divider-text { font-size: 16px; }
+    .registration__divider-line { width: 30%; }
+    .registration__social-btn { height: 46px; font-size: 16px; width: 85%; }
+    .registration__social-icon { width: 24px; height: 24px; }
 }

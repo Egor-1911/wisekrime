@@ -9,8 +9,8 @@ a {
 }
 
 @font-face {
-    font-family: 'MyFont';
-    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-family: 'IstokWeb-Regular';
+    src: url('/fonts/IstokWeb-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -23,14 +23,16 @@ body {
 
 .personal-account {
     width: 100%;
-    height: 800px;
+    min-height: 800px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    padding: 40px 0;
 }
 
 .personal-account__title {
     font-size: 32px;
+    margin-bottom: 20px;
 }
 
 .personal-account__card {
@@ -38,13 +40,14 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background: #333;
+    background: #363636;
     padding: 24px;
     border-radius: 15px;
-    height: 700px;
+    min-height: 700px;
     width: 30%;
     text-align: center;
     gap: 30px;
+    border: 1px solid black;
 }
 
 .personal-account__avatar {
@@ -56,8 +59,6 @@ body {
     object-fit: cover;
     border: 1px solid black;
 }
-
-
 
 .personal-account__avatar:hover {
     border-color: #DE0000;
@@ -77,17 +78,20 @@ body {
     justify-content: flex-start;
     gap: 10px;
     padding-left: 15px;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
 }
 
 .personal-account__field:hover {
-    border: 1px solid #DE0000;
+    border-color: #DE0000;
     background: #f0f0f0;
 }
 
+/* Кнопки "Заказы" и "Корзина" — теперь <button> */
 .personal-account__action {
     width: 80%;
     height: 60px;
-    background: #e60000;
+    background: #DE0000;
     color: white;
     border-radius: 15px;
     font-size: 18px;
@@ -98,6 +102,9 @@ body {
     align-items: center;
     justify-content: center;
     gap: 10px;
+    cursor: pointer;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    transition: all 0.2s ease;
 }
 
 .personal-account__action:hover {
@@ -105,93 +112,50 @@ body {
     border-color: #b80000;
 }
 
-/* Адаптивность */
+/* Кнопка выхода */
+.personal-account__logout {
+    width: 100%;
+    height: 60px;
+    background: #363636;
+    color: #DE0000;
+    border-radius: 15px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #DE0000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    transition: all 0.2s ease;
+}
 
+.personal-account__logout:hover {
+    background: #DE0000;
+    color: white;
+}
+
+.personal-account__message {
+    color: white;
+    font-size: 18px;
+    text-align: center;
+}
+
+.personal-account__message a {
+    color: #DE0000;
+    text-decoration: underline;
+}
+
+/* Адаптивка */
 @media (max-width: 1200px) {
-    .personal-account {
-        height: auto;
-        min-height: 750px;
-        padding: 40px 0;
-    }
-
-    .personal-account__card {
-        width: 35%;
-        height: 680px;
-        gap: 25px;
-    }
-
-    .personal-account__avatar {
-        height: 220px;
-        width: 55%;
-    }
-
-    .personal-account__field {
-        height: 55px;
-        font-size: 17px;
-        padding-left: 12px;
-    }
-
-    .personal-account__action {
-        height: 55px;
-        font-size: 17px;
-    }
+    .personal-account__card { width: 35%; min-height: 680px; gap: 25px; }
+    .personal-account__avatar { height: 220px; width: 55%; }
+    .personal-account__field { height: 55px; font-size: 17px; padding-left: 12px; }
+    .personal-account__action, .personal-account__logout { height: 55px; font-size: 17px; }
 }
 
 @media (max-width: 900px) {
-    .personal-account {
-        padding: 30px 0;
-    }
-
-    .personal-account__card {
-        width: 60%;
-        height: auto;
-        min-height: 620px;
-        padding: 24px 20px;
-        gap: 20px;
-    }
-
-    .personal-account__avatar {
-        height: 180px;
-        width: 50%;
-    }
-
-    .personal-account__field {
-        height: 50px;
-        font-size: 16px;
-        padding-left: 10px;
-    }
-
-    .personal-account__action {
-        height: 50px;
-        font-size: 16px;
-    }
-}
-
-@media (max-width: 480px) {
-    .personal-account {
-        padding: 24px 16px;
-    }
-
-    .personal-account__card {
-        width: 90%;
-        min-height: 560px;
-        padding: 20px 16px;
-        gap: 18px;
-    }
-
-    .personal-account__avatar {
-        height: 200px;
-        width: 80%;
-    }
-
-    .personal-account__field {
-        height: 48px;
-        font-size: 15px;
-        padding-left: 10px;
-    }
-
-    .personal-account__action {
-        height: 48px;
-        font-size: 15px;
-    }
+    .personal-account__card { width: 60%; min-height: 620px; padding: 24px 20px; gap: 20px; }
+    .personal-account__avatar { height: 180px; width: 50%; }
 }

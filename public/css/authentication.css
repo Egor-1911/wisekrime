@@ -9,8 +9,8 @@ a {
 }
 
 @font-face {
-    font-family: 'MyFont';
-    src: url('style/fonts/IstokWeb-Regular.ttf') format('ttf');
+    font-family: 'IstokWeb-Regular';
+    src: url('/fonts/IstokWeb-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -26,8 +26,9 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: 80vh;
+    padding: 40px 0;
 }
-
 
 .authentication__form {
     display: flex;
@@ -37,10 +38,11 @@ body {
     justify-content: flex-start;
     background-color: #363636;
     width: 30%;
-    height: 700px;
+    min-height: 700px;
     gap: 30px;
     border-radius: 15px;
     border: 1px solid black;
+    padding-bottom: 30px;
 }
 
 .authentication__form-title {
@@ -56,6 +58,7 @@ body {
     border: 1px solid black;
     border-radius: 15px;
     padding: 20px;
+    font-family: 'IstokWeb-Regular', sans-serif;
 }
 
 .authentication__input:focus {
@@ -72,16 +75,21 @@ body {
 .authentication__input:focus::placeholder {
     color: #aaa;
 }
+
+/* Стили для кнопки-сабмита (теперь это <button>, а не <a>) */
 .authentication__submit {
     width: 25%;
     height: 50px;
     color: white;
-    background-color: red;
+    background-color: #DE0000;
     border: 1px solid black;
     border-radius: 15px;
     font-size: 18px;
     text-align: center;
     line-height: 50px;
+    cursor: pointer;
+    font-family: 'IstokWeb-Regular', sans-serif;
+    transition: all 0.2s ease;
 }
 
 .authentication__submit:hover {
@@ -89,7 +97,7 @@ body {
     border-color: #b80000;
 }
 
-.authentication__link{
+.authentication__link {
     color: #DE0000;
     font-size: 22px;
     text-decoration: underline;
@@ -99,114 +107,47 @@ body {
     color: #a00000;
 }
 
-/* Адаптивка */
-
-
-@media (max-width: 1200px) {
-    .authentication__form {
-        width: 35%;
-        height: 680px;
-        gap: 25px;
-    }
-
-    .authentication__input {
-        height: 55px;
-        font-size: 20px;
-        padding: 18px;
-    }
-
-    .authentication__input::placeholder {
-        font-size: 20px;
-    }
-
-    .authentication__submit {
-        width: 30%;
-        height: 48px;
-        font-size: 17px;
-    }
-
-    .authentication__link {
-        font-size: 20px;
-    }
+/* Сообщение об ошибке валидации */
+.authentication__error {
+    color: #DE0000;
+    font-size: 14px;
+    width: 80%;
+    text-align: left;
+    padding-left: 10%;
+    margin-top: -20px;
 }
 
+/* Сообщение об успехе */
+.authentication__success {
+    color: green;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+/* Адаптивка */
+@media (max-width: 1200px) {
+    .authentication__form { width: 35%; min-height: 680px; gap: 25px; }
+    .authentication__input { height: 55px; font-size: 20px; padding: 18px; }
+    .authentication__input::placeholder { font-size: 20px; }
+    .authentication__submit { width: 30%; height: 48px; font-size: 17px; }
+    .authentication__link { font-size: 20px; }
+}
 
 @media (max-width: 900px) {
-    .authentication__title {
-        font-size: 28px;
-    }
-
-    .authentication__form {
-        width: 60%;
-        height: auto;
-        min-height: 620px;
-        padding: 20px 0;
-        gap: 20px;
-    }
-
-    .authentication__form-title {
-        font-size: 24px;
-    }
-
-    .authentication__input {
-        height: 50px;
-        font-size: 18px;
-        padding: 15px;
-    }
-
-    .authentication__input::placeholder {
-        font-size: 18px;
-    }
-
-    .authentication__submit {
-        width: 35%;
-        height: 45px;
-        font-size: 16px;
-    }
-
-    .authentication__link {
-        font-size: 18px;
-    }
+    .authentication__form { width: 60%; min-height: 620px; padding: 20px 0; gap: 20px; }
+    .authentication__form-title { font-size: 24px; }
+    .authentication__input { height: 50px; font-size: 18px; padding: 15px; }
+    .authentication__input::placeholder { font-size: 18px; }
+    .authentication__submit { width: 35%; height: 45px; font-size: 16px; }
+    .authentication__link { font-size: 18px; }
 }
 
 @media (max-width: 480px) {
-    .authentication {
-        padding: 0 16px;
-    }
-
-    .authentication__title {
-        font-size: 24px;
-        padding: 0 10px;
-    }
-
-    .authentication__form {
-        width: 90%;
-        min-height: 580px;
-        padding: 24px 0;
-        gap: 18px;
-    }
-
-    .authentication__form-title {
-        font-size: 22px;
-    }
-
-    .authentication__input {
-        height: 48px;
-        font-size: 16px;
-        padding: 12px;
-    }
-
-    .authentication__input::placeholder {
-        font-size: 16px;
-    }
-
-    .authentication__submit {
-        width: 45%;
-        height: 42px;
-        font-size: 15px;
-    }
-
-    .authentication__link {
-        font-size: 16px;
-    }
+    .authentication { padding: 0 16px; }
+    .authentication__form { width: 90%; min-height: 580px; padding: 24px 0; gap: 18px; }
+    .authentication__form-title { font-size: 22px; }
+    .authentication__input { height: 48px; font-size: 16px; padding: 12px; }
+    .authentication__input::placeholder { font-size: 16px; }
+    .authentication__submit { width: 45%; height: 42px; font-size: 15px; }
+    .authentication__link { font-size: 16px; }
 }

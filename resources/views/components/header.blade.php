@@ -10,9 +10,18 @@
             <input class="header__search-input" type="search" placeholder="Какая услуга вас интересует?">
         </div>
         <div class="header__auth">
-            <a class="header__auth-link" href="/login">Вход</a>
-            <p>|</p>
-            <a class="header__auth-link" href="/register">Регистрация</a>
+            @auth
+                <a class="header__auth-link" href="{{ route('personalaccount') }}">{{ Auth::user()->name }}</a>
+                <p>|</p>
+                <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="header__auth-link" style="background: none; border: none; color: white; cursor: pointer; font-family: 'IstokWeb-Regular', sans-serif;">Выход</button>
+                </form>
+            @else
+                <a class="header__auth-link" href="{{ route('login') }}">Вход</a>
+                <p>|</p>
+                <a class="header__auth-link" href="{{ route('register') }}">Регистрация</a>
+            @endauth
         </div>
     </div>
 

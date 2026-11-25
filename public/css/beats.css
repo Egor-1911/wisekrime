@@ -228,7 +228,8 @@ body {
 
 .beats__item-button {
     height: 40px;
-    width: 7%;
+    min-width: 80px;
+    padding: 0 15px;
     border-radius: 15px;
     background-color: #DE0000;
     font-size: 16px;
@@ -236,6 +237,8 @@ body {
     border: 1px solid black;
     font-family: 'IstokWeb-Regular', sans-serif;
     cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
 .beats__item-button:hover {

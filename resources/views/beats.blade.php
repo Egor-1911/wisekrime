@@ -73,7 +73,12 @@
                 <div class="beats__item-tags">
                     <h5>{{ $beat->tags->pluck('name')->join(', ') }}</h5>
                 </div>
-                <button class="beats__item-button">{{ number_format($beat->price, 0, ',', ' ') }} ₽</button>
+                <form action="{{ route('cart.add', $beat->id) }}" method="POST" style="display: inline;">
+                    @csrf
+                    <button type="submit" class="beats__item-button">
+                        {{ number_format($beat->price, 0, ',', ' ') }} ₽
+                    </button>
+                </form>
             </div>
         @empty
             <div class="beats__empty" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
