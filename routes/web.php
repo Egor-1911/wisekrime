@@ -1,16 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BeatController;
+
 
 // Главная
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-// Каталог
-Route::get('/beats', function () {
-    return view('beats');
-})->name('beats');
+
+Route::get('/beats', [BeatController::class, 'index'])->name('beats');
+
 
 Route::get('/studios', function () {
     return view('studios');
