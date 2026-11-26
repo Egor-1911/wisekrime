@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\RateLimiter;
 
 class AuthController extends Controller
 {
@@ -74,6 +76,9 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        // Явная защита от брутфорса
+        $this->validateLoginAttempts($request);
+
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -83,12 +88,43 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+//            сброс счетчика попыток после входа
+            RateLimiter::clear($this->loginThrottleKey($request));
             return redirect()->route('personalaccount')->with('success', 'Добро пожаловать!');
         }
+
+
+//        увеличение счетчика неудачных попыток
+        RateLimiter::hit($this->loginThrottleKey($request), 60);
 
         return back()->withErrors([
             'email' => 'Неверный email или пароль.',
         ])->onlyInput('email');
+    }
+
+    /**
+     * Проверка лимита попыток входа
+     */
+    private function validateLoginAttempts(Request $request)
+    {
+        $key = $this->loginThrottleKey($request);
+
+        if (RateLimiter::tooManyAttempts($key, 5)) {
+            $seconds = RateLimiter::availableIn($key);
+            throw new \Illuminate\Http\Exceptions\ThrottleRequestsException(
+                null,
+                null,
+                ['Retry-After' => $seconds]
+            );
+        }
+    }
+
+    /**
+     * Ключ для rate limiter входа
+     */
+    private function loginThrottleKey(Request $request)
+    {
+        return 'login:' . $request->input('email') . '|' . $request->ip();
     }
 
     /**

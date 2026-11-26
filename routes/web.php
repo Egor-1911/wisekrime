@@ -21,13 +21,15 @@ Route::get('/mixing', function () { return view('mixing'); })->name('mixing');
 Route::get('/covers', function () { return view('covers'); })->name('covers');
 Route::get('/licenses', function () { return view('licenses'); })->name('licenses');
 
-// Авторизация и регистрация (только для гостей)
-Route::middleware('guest')->group(function () {
+
+// Авторизация и регистрация (только для гостей) + защита от DDoS
+Route::middleware(['guest', 'throttle:login'])->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 });
+
 
 // Выход
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
@@ -50,8 +52,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Оформление заказа
     Route::get('/checkout', [OrderController::class, 'checkout'])->name('checkout');
-    Route::post('/checkout', [OrderController::class, 'store'])->name('checkout.store');
+    Route::post('/checkout', [OrderController::class, 'store'])->middleware('throttle:checkout')->name('checkout.store');
     Route::get('/order/success/{id}', [OrderController::class, 'success'])->name('order.success');
+
 
     // Заказы
     Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
