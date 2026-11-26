@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminController;
 
 
 // Главная страница
@@ -28,7 +29,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [AuthController::class, 'login'])->name('login.store');
 });
 
-// Выход 
+// Выход
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
@@ -59,4 +60,13 @@ Route::middleware(['auth'])->group(function () {
     // Редактирование профиля
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
+
+//админ панель
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/users', [AdminController::class, 'users'])->name('users');
+    Route::get('/orders', [AdminController::class, 'orders'])->name('orders');
+    Route::get('/beats', [AdminController::class, 'beats'])->name('beats');
 });
