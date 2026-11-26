@@ -79,7 +79,8 @@
             border-color: #DE0000;
             background-color: #555;
         }
-        .checkout__license-card input[type="radio"] {
+        .checkout__license-card input[type="radio"],
+        .checkout__license-card input[type="checkbox"] {
             position: absolute;
             opacity: 0;
         }
@@ -101,7 +102,7 @@
         
         .checkout__total {
             font-size: 24px;
-            color: white;
+            color: #363636;
             text-align: right;
             margin-top: 20px;
         }
@@ -157,32 +158,48 @@
                         {{ $item['title'] }} × {{ $item['quantity'] }}
                     </div>
                     <div class="checkout__cart-item-price">
-                        {{ number_format($item['price'] * $item['quantity'], 0, ',', ' ') }} ₽
+                        {{ number_format((float) $item['price'] * (int) $item['quantity'], 0, ',', ' ') }} ₽
                     </div>
                 </div>
             @endforeach
-            <div class="checkout__total">
+            <div class="checkout__total" style="color: white;">
                 Сумма битов: <span>{{ number_format($cartTotal, 0, ',', ' ') }} ₽</span>
             </div>
         </div>
 
-        <!-- Выбор лицензии -->
+        <!-- Блок 1: Лицензии на биты (обязательный выбор) -->
         <div class="checkout__section">
-            <h2 class="checkout__section-title">Выберите тип лицензии</h2>
+            <h2 class="checkout__section-title">1. Выберите лицензию на биты *</h2>
             <div class="checkout__licenses">
-                @foreach($licenses as $license)
-                    <label class="checkout__license-card" onclick="selectLicense(this)">
+                @foreach($beatLicenses as $license)
+                    <label class="checkout__license-card" onclick="selectBeatLicense(this)">
                         <input type="radio" name="license_id" value="{{ $license->id }}" required>
                         <div class="checkout__license-name">{{ $license->name }}</div>
                         <div class="checkout__license-desc">{{ $license->description }}</div>
-                        <div class="checkout__license-price">{{ number_format($license->price, 0, ',', ' ') }} ₽</div>
+                        <div class="checkout__license-price">{{ number_format((float) $license->price, 0, ',', ' ') }} ₽</div>
                     </label>
                 @endforeach
             </div>
         </div>
 
-        <!-- Итоговая сумма (будет обновляться через JS) -->
-        <div class="checkout__total" style="color: #363636;">
+        <!-- Блок 2: Дополнительные услуги (необязательный выбор) -->
+        <div class="checkout__section">
+            <h2 class="checkout__section-title">2. Дополнительные услуги (необязательно)</h2>
+            <div class="checkout__licenses">
+                @foreach($serviceLicenses as $service)
+                    <label class="checkout__license-card" onclick="toggleService(this)">
+                        <input type="checkbox" name="services[]" value="{{ $service->id }}" 
+                               data-price="{{ (float) $service->price }}">
+                        <div class="checkout__license-name">{{ $service->name }}</div>
+                        <div class="checkout__license-desc">{{ $service->description }}</div>
+                        <div class="checkout__license-price">{{ number_format((float) $service->price, 0, ',', ' ') }} ₽</div>
+                    </label>
+                @endforeach
+            </div>
+        </div>
+
+        <!-- Итоговая сумма -->
+        <div class="checkout__total">
             Итого к оплате: <span id="totalAmount">{{ number_format($cartTotal, 0, ',', ' ') }} ₽</span>
         </div>
 
@@ -194,24 +211,80 @@
 
 <script>
     const cartTotal = {{ $cartTotal }};
-    const licensePrices = @json($licenses->pluck('price', 'id'));
+    let selectedLicensePrice = 0;
 
-    function selectLicense(card) {
-        // Убираем выделение со всех карточек
-        document.querySelectorAll('.checkout__license-card').forEach(c => c.classList.remove('selected'));
+    function selectBeatLicense(card) {
+        // Убираем выделение со всех карточек лицензий на биты (radio)
+        const beatSection = card.closest('.checkout__section');
+        beatSection.querySelectorAll('.checkout__license-card').forEach(c => c.classList.remove('selected'));
+        
         // Выделяем выбранную
         card.classList.add('selected');
         
         // Получаем цену лицензии
-        const licenseId = card.querySelector('input[type="radio"]').value;
-        const licensePrice = licensePrices[licenseId];
+        const priceText = card.querySelector('.checkout__license-price').textContent;
+        selectedLicensePrice = parseFloat(priceText.replace(/\s/g, '').replace('₽', '').trim());
         
-        // Обновляем итоговую сумму
-        const total = cartTotal + licensePrice;
-        document.getElementById('totalAmount').textContent = total.toLocaleString('ru-RU') + ' ₽';
-        
-        // Активируем кнопку
-        document.getElementById('submitBtn').disabled = false;
+        updateTotal();
+        checkSubmitButton();
     }
+
+    function toggleService(card) {
+        // Toggle выделение для доп. услуг (checkbox)
+        card.classList.toggle('selected');
+        
+        // Синхронизируем checkbox с кликом по карточке
+        const checkbox = card.querySelector('input[type="checkbox"]');
+        // checkbox.toggle() вызывается автоматически при клике на label
+        
+        updateTotal();
+    }
+
+    function updateTotal() {
+        let servicesTotal = 0;
+        document.querySelectorAll('input[name="services[]"]:checked').forEach(checkbox => {
+            servicesTotal += parseFloat(checkbox.dataset.price);
+        });
+
+        const total = cartTotal + selectedLicensePrice + servicesTotal;
+        document.getElementById('totalAmount').textContent = total.toLocaleString('ru-RU') + ' ₽';
+    }
+
+    function checkSubmitButton() {
+        const licenseSelected = document.querySelector('input[name="license_id"]:checked');
+        document.getElementById('submitBtn').disabled = !licenseSelected;
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', function() {
+        // Добавляем обработчики для checkbox услуг
+        document.querySelectorAll('input[name="services[]"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const card = this.closest('.checkout__license-card');
+                if (this.checked) {
+                    card.classList.add('selected');
+                } else {
+                    card.classList.remove('selected');
+                }
+                updateTotal();
+            });
+        });
+
+        // Добавляем обработчики для radio лицензий
+        document.querySelectorAll('input[name="license_id"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const card = this.closest('.checkout__license-card');
+                const beatSection = card.closest('.checkout__section');
+                beatSection.querySelectorAll('.checkout__license-card').forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                
+                const priceText = card.querySelector('.checkout__license-price').textContent;
+                selectedLicensePrice = parseFloat(priceText.replace(/\s/g, '').replace('₽', '').trim());
+                
+                updateTotal();
+                checkSubmitButton();
+            });
+        });
+    });
 </script>
 @endsection

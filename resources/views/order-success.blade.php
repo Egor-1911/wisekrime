@@ -79,9 +79,9 @@
             <span>{{ $order->created_at->format('d.m.Y H:i') }}</span>
         </div>
         
-        @foreach($order->orderItems as $item)
+       @foreach($order->orderItems as $item)
             <div class="order-success__row">
-                <span>{{ $item->beat->title ?? 'Товар' }} × {{ $item->quantity ?? 1 }}</span>
+                <span>{{ $item->name ?? ($item->beat->title ?? 'Товар') }}</span>
                 <span>{{ number_format($item->price, 0, ',', ' ') }} ₽</span>
             </div>
         @endforeach

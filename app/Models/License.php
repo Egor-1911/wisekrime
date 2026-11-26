@@ -14,6 +14,7 @@ class License extends Model
         'description',
         'price',
         'type',
+        'category',
     ];
 
     protected $casts = [
@@ -24,5 +25,15 @@ class License extends Model
     {
         return $this->hasMany(Order::class);
     }
-}
 
+    // Scope для фильтрации по категории
+    public function scopeBeat($query)
+    {
+        return $query->where('category', 'beat');
+    }
+
+    public function scopeService($query)
+    {
+        return $query->where('category', 'service');
+    }
+}

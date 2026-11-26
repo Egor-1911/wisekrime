@@ -144,10 +144,14 @@
                 <div class="order-card__items">
                     @foreach($order->orderItems as $item)
                         <div class="order-card__item">
-                            <img src="{{ asset('img/' . ($item->beat->cover_image ?? 'default-cover.png')) }}" 
-                                 alt="{{ $item->beat->title ?? 'Товар' }}">
+                            @if($item->beat_id)
+                                <img src="{{ asset('img/' . ($item->beat->cover_image ?? 'default-cover.png')) }}" 
+                                    alt="{{ $item->beat->title }}">
+                            @else
+                                <img src="{{ asset('img/Icon_button.svg') }}" alt="Услуга">
+                            @endif
                             <div class="order-card__item-title">
-                                {{ $item->beat->title ?? 'Товар' }}
+                                {{ $item->name ?? ($item->beat->title ?? 'Товар') }}
                             </div>
                             <div class="order-card__item-price">
                                 {{ number_format($item->price, 0, ',', ' ') }} ₽

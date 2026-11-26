@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-
 class OrderItem extends Model
 {
     protected $table = 'order_items';
 
     protected $fillable = [
-        'mixing_id',
         'order_id',
+        'name',
+        'mixing_id',
         'cover_id',
         'beat_id',
         'price',

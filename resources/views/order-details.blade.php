@@ -81,8 +81,12 @@
 
         @foreach($order->orderItems as $item)
             <div class="order-details__row">
-                <span class="order-details__row-label">{{ $item->beat->title ?? 'Товар' }}:</span>
-                <span class="order-details__row-value">{{ number_format($item->price, 0, ',', ' ') }} ₽</span>
+                <span class="order-details__row-label">
+                    {{ $item->name ?? ($item->beat->title ?? 'Товар') }}:
+                </span>
+                <span class="order-details__row-value">
+                    {{ number_format($item->price, 0, ',', ' ') }} ₽
+                </span>
             </div>
         @endforeach
 
