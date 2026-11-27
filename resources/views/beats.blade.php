@@ -6,14 +6,6 @@
     <link rel="stylesheet" href="{{ asset('css/beats.css') }}">
 @endpush
 
-@extends('layouts.app')
-
-@section('title', 'Каталог битов')
-
-@push('styles')
-    <link rel="stylesheet" href="{{ asset('css/beats.css') }}">
-@endpush
-
 @section('content')
 <div class="beats">
     <h1 class="beats__title">Биты</h1>
